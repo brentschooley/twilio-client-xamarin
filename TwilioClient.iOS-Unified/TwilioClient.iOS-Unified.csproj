@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{7EFBA986-5434-4807-8EF0-B385FCFBE380}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TwilioClient.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>TwilioClient.iOS-Unified</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <ReleaseVersion>1.2</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+    <ObjcBindingCoreSource Include="Extras.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Xamarin.ObjcBinding.CSharp.targets" />
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="libcrypto.a" />
+    <ObjcBindingNativeLibrary Include="libssl.a" />
+    <ObjcBindingNativeLibrary Include="libTwilioClient.a" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="libcrypto.linkwith.cs">
+      <DependentUpon>libcrypto.a</DependentUpon>
+    </Compile>
+    <Compile Include="libssl.linkwith.cs">
+      <DependentUpon>libssl.a</DependentUpon>
+    </Compile>
+    <Compile Include="libTwilioClient.linkwith.cs">
+      <DependentUpon>libTwilioClient.a</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\disconnect.wav">
+      <Link>Resources\disconnect.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_0.wav">
+      <Link>Resources\dtmf_0.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_1.wav">
+      <Link>Resources\dtmf_1.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_2.wav">
+      <Link>Resources\dtmf_2.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_3.wav">
+      <Link>Resources\dtmf_3.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_4.wav">
+      <Link>Resources\dtmf_4.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_5.wav">
+      <Link>Resources\dtmf_5.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_6.wav">
+      <Link>Resources\dtmf_6.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_7.wav">
+      <Link>Resources\dtmf_7.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_8.wav">
+      <Link>Resources\dtmf_8.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_9.wav">
+      <Link>Resources\dtmf_9.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_hash.wav">
+      <Link>Resources\dtmf_hash.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\dtmf_star.wav">
+      <Link>Resources\dtmf_star.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\incoming.wav">
+      <Link>Resources\incoming.wav</Link>
+    </BundleResource>
+    <BundleResource Include="..\TwilioClient.iOS\Resources\outgoing.wav">
+      <Link>Resources\outgoing.wav</Link>
+    </BundleResource>
+  </ItemGroup>
+</Project>

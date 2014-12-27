@@ -1,0 +1,59 @@
+﻿<metadata>
+ 
+	<!--	Just bind public API found here http://www.twilio.com/docs/client/android in the class reference 
+			so we just remove everything else beyond com.twilio.client.impl
+	-->
+	<remove-node path="/api/package[contains(@name, '.impl')]" />
+
+ 
+	<!-- 	Fix the events duplicates 	-->
+	<attr path="/api/package[@name='com.twilio.client']/interface[@name='DeviceListener']/method[@name='onStopListening' and count(parameter)=3]" name="managedName">OnStopListeningWithError</attr>
+	<attr path="/api/package[@name='com.twilio.client']/interface[@name='ConnectionListener']/method[@name='onDisconnected' and count(parameter)=3]" name="managedName">OnDisconnectedWithError</attr>
+
+	<!--	Fix return types	-->
+	<attr path="/api/package[@name='com.twilio.client']/class[@name='TwilioClientService.TwilioBinder']/method[@name='getCallManager']" name="return">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.twilio.client']/class[@name='TwilioClientService.TwilioBinder']/method[@name='getEventStreamManager']" name="return">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.twilio.client']/class[@name='TwilioClientService.TwilioBinder']/method[@name='getMediaManager']" name="return">Java.Lang.Object</attr>
+ 
+	<!--	Normalize the API in a more NET-ish name	-->
+	<attr path="/api/package[@name='com.twilio.client']" name="managedName">TwilioClient.Android</attr>
+ 
+ 	<!-- 	For some reason javadocs aren't being recognized correctly so let's manually add some names -->
+ 	<!-- DeviceListener -->
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='DeviceListener']/method[@name='onStopListening']/parameter[@name='p0']" name="name">device</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='DeviceListener']/method[@name='onStopListening']/parameter[@name='p1']" name="name">errorCode</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='DeviceListener']/method[@name='onStopListening']/parameter[@name='p2']" name="name">errorMessage</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='DeviceListener']/method[@name='onStartListening']/parameter[@name='p0']" name="name">device</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='DeviceListener']/method[@name='receivePresenceEvents']/parameter[@name='p0']" name="name">device</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='DeviceListener']/method[@name='onPresenceChanged']/parameter[@name='p0']" name="name">device</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='DeviceListener']/method[@name='onPresenceChanged']/parameter[@name='p1']" name="name">presenceEvent</attr>
+
+ 	<!-- ConnectionListener -->
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='ConnectionListener']/method[@name='onConnecting']/parameter[@name='p0']" name="name">connection</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='ConnectionListener']/method[@name='onConnected']/parameter[@name='p0']" name="name">connection</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='ConnectionListener']/method[@name='onDisconnected']/parameter[@name='p0']" name="name">connection</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='ConnectionListener']/method[@name='onDisconnected']/parameter[@name='p1']" name="name">errorCode</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='ConnectionListener']/method[@name='onDisconnected']/parameter[@name='p2']" name="name">errorMessage</attr>
+
+ 	<!-- Twilio -->
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Twilio']/method[@name='initialize']/parameter[@name='p0']" name="name">applicationContext</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Twilio']/method[@name='initialize']/parameter[@name='p1']" name="name">initListener</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Twilio']/method[@name='createDevice']/parameter[@name='p0']" name="name">capabilityToken</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Twilio']/method[@name='createDevice']/parameter[@name='p1']" name="name">deviceListener</attr>
+
+ 	<!-- Device -->
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Device']/method[@name='connect']/parameter[@name='p0']" name="name">parameters</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Device']/method[@name='connect']/parameter[@name='p1']" name="name">connectionListener</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Device']/method[@name='setDeviceListener']/parameter[@name='p0']" name="name">deviceListener</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Device']/method[@name='setDisconnectSoundEnabled']/parameter[@name='p0']" name="name">enabled</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Device']/method[@name='setIncomingIntent']/parameter[@name='p0']" name="name">pendingIntent</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Device']/method[@name='setIncomingSoundEnabled']/parameter[@name='p0']" name="name">enabled</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Device']/method[@name='setOutgoingSoundEnabled']/parameter[@name='p0']" name="name">enabled</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/class[@name='Device']/method[@name='updateCapabilityToken']/parameter[@name='p0']" name="name">capabilityToken</attr>
+
+ 	<!-- Connection -->
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='Connection']/method[@name='sendDigits']/parameter[@name='p0']" name="name">digits</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='Connection']/method[@name='setConnectionListener']/parameter[@name='p0']" name="name">connectionListener</attr>
+ 	<attr path="/api/package[@name='com.twilio.client']/interface[@name='Connection']/method[@name='setMuted']/parameter[@name='p0']" name="name">muted</attr>
+
+</metadata>      

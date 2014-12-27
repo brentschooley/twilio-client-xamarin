@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{F5B4F3BC-B597-4E2B-B552-EF5D8A32436F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{6B629164-7AEE-4C75-B61A-E1BE46600745}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TwilioClient.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>TwilioClient.iOS</AssemblyName>
+    <ReleaseVersion>1.2</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+    <ObjcBindingCoreSource Include="Extras.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Xamarin.ObjcBinding.CSharp.targets" />
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="libcrypto.a" />
+    <ObjcBindingNativeLibrary Include="libssl.a" />
+    <ObjcBindingNativeLibrary Include="libTwilioClient.a" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="libcrypto.linkwith.cs">
+      <DependentUpon>libcrypto.a</DependentUpon>
+    </Compile>
+    <Compile Include="libssl.linkwith.cs">
+      <DependentUpon>libssl.a</DependentUpon>
+    </Compile>
+    <Compile Include="libTwilioClient.linkwith.cs">
+      <DependentUpon>libTwilioClient.a</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\disconnect.wav" />
+    <BundleResource Include="Resources\dtmf_0.wav" />
+    <BundleResource Include="Resources\dtmf_1.wav" />
+    <BundleResource Include="Resources\dtmf_2.wav" />
+    <BundleResource Include="Resources\dtmf_3.wav" />
+    <BundleResource Include="Resources\dtmf_4.wav" />
+    <BundleResource Include="Resources\dtmf_5.wav" />
+    <BundleResource Include="Resources\dtmf_6.wav" />
+    <BundleResource Include="Resources\dtmf_7.wav" />
+    <BundleResource Include="Resources\dtmf_8.wav" />
+    <BundleResource Include="Resources\dtmf_9.wav" />
+    <BundleResource Include="Resources\dtmf_hash.wav" />
+    <BundleResource Include="Resources\dtmf_star.wav" />
+    <BundleResource Include="Resources\incoming.wav" />
+    <BundleResource Include="Resources\outgoing.wav" />
+  </ItemGroup>
+</Project>
